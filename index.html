@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSGORoll Promo - NOA2002</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('https://cdn.csgoroll.com/backgrounds/space-gradient.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: #000;
+      padding: 1rem;
+      border-bottom: 2px solid #00ff99;
+    }
+    header h1 {
+      color: #00ff99;
+    }
+    .case-battle {
+      padding: 40px 20px;
+    }
+    .battle-arena {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    .player {
+      text-align: center;
+    }
+    .player img {
+      width: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .case {
+      width: 100px;
+      transition: transform 0.4s ease;
+    }
+    .case:hover {
+      transform: scale(1.1);
+    }
+    .battle-result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #00ff99;
+    }
+    .open-case {
+      padding: 20px;
+    }
+    .case-btn {
+      padding: 10px 25px;
+      font-size: 1rem;
+      background: #00ff99;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .reveal {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Use Code <span style="color:#00ff99">NOA2002</span> on CSGORoll</h1>
+</header>
+
+<section class="case-battle">
+  <h2>🔥 1v1 Case Battle Simulation</h2>
+  <div class="battle-arena">
+    <div class="player">
+      <img src="https://cdn.csgoroll.com/avatars/default.png" alt="You">
+      <div>You</div>
+    </div>
+    <img class="case" src="https://cdn.csgoroll.com/case-thumbs/overflow.png" alt="Overflow Case">
+    <div class="player">
+      <img src="https://cdn.csgoroll.com/avatars/default2.png" alt="Enemy">
+      <div>Enemy</div>
+    </div>
+  </div>
+  <div class="battle-result" id="battleResult">Click the button to start!</div>
+  <button class="case-btn" onclick="simulateBattle()">Start Battle</button>
+</section>
+
+<section class="open-case">
+  <h2>🎁 Open a Case</h2>
+  <img src="https://cdn.csgoroll.com/case-thumbs/104.png" class="case" alt="Ice Blast">
+  <div><button class="case-btn" onclick="openCase()">Open Case</button></div>
+  <div class="reveal" id="caseReveal"></div>
+</section>
+
+<script>
+  const skins = ["AWP | Asiimov", "AK-47 | Neon Rider", "M4A1-S | Hot Rod", "USP-S | Kill Confirmed", "★ Karambit | Doppler"];
+  function simulateBattle() {
+    const p1 = skins[Math.floor(Math.random() * skins.length)];
+    const p2 = skins[Math.floor(Math.random() * skins.length)];
+    let result = "It's a tie!";
+    if (p1 !== p2) result = Math.random() > 0.5 ? "🎉 You Win!" : "😢 Opponent Wins!";
+    document.getElementById("battleResult").innerHTML = `
+      You: <strong>${p1}</strong><br>
+      Enemy: <strong>${p2}</strong><br><br>
+      <strong>${result}</strong>
+    `;
+  }
+
+  function openCase() {
+    const drop = skins[Math.floor(Math.random() * skins.length)];
+    document.getElementById("caseReveal").innerHTML = `🎉 You unboxed: <strong>${drop}</strong>`;
+  }
+</script>
+
+</body>
+</html>
